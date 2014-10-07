@@ -1,4 +1,9 @@
-jQuery-AutoHeight
-=================
+jQuery Auto Height
+=====================
 
-Set matching elements to the same height.
+Set all matching elements to the same height.
+
+## Usage
+```
+$('.sameheight').autoHeight();
+```
