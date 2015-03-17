@@ -7,3 +7,9 @@ Set all matching elements to the same height.
 ```
 $('.sameheight').autoHeight();
 ```
+```
+$('.sameheight').autoHeight({
+    minWidth: 400,
+    maxWidth: 800
+});
+```
