@@ -8,6 +8,10 @@
  * 
  * Usage:
  *     $('.scrollable').autoHeight();
+ *     $('.scrollable').autoHeight({
+ *         minWidth: 400,
+ *         maxWidth: 800
+ *     });
  * 
  **/
 (function($){
