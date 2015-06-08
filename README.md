@@ -4,7 +4,7 @@ jQuery Auto Height
 Set all matching elements to the same height.
 
 ## Demo
-http://springstubbe.us/demos/jquery-autoheight/
+http://springstubbe.us/projects/demos/jquery-autoheight/
 
 ## Usage
 ```
