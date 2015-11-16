@@ -13,6 +13,8 @@ $('.sameheight').autoHeight();
 ```
 $('.sameheight').autoHeight({
     minWidth: 400,
-    maxWidth: 800
+    maxWidth: 800,
+    perRow: false
 });
 ```
+*perRow will detect elements in a row and get/set their maxHeight as a group rather than all elements selected
