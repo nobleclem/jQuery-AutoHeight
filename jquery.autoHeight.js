@@ -1,6 +1,6 @@
 /**
  * Set height of a group of elements to the largest size
- * @Version: 1.1
+ * @Version: 1.1.1
  * @Author: Patrick Springstubbe
  * @Contact: @JediNobleclem
  * @Website: springstubbe.us
@@ -9,9 +9,10 @@
  * Usage:
  *     $('.scrollable').autoHeight();
  *     $('.scrollable').autoHeight({
- *         minWidth: 400,
- *         maxWidth: 800,
- *         perRow: false
+ *         minWidth  : 400,
+ *         maxWidth  : 800,
+ *         perRow    : false,
+ *         skipHidden: true
  *     });
  * 
  **/
@@ -19,9 +20,10 @@
     $.fn.autoHeight = function( options ){
         defaults = {
             // only resize if between these heights, set to false to disable (min|max)Height check
-            minWidth: false,
-            maxWidth: false,
-            perRow: false
+            minWidth  : false,
+            maxWidth  : false,
+            perRow    : false, // treat each invisible row independently
+            skipHidden: true   // don't use hidden elements in autoheight calculations
         }
         options = $.extend( defaults, options );
 
@@ -40,6 +42,11 @@
             // determine max height of elements,
             // then set all to maxHeight
             elements.each(function(){
+                // skip hidden elements
+                if( options.skipHidden && $(this).not(':visible') ) {
+                    return true;
+                }
+
                 // set previously unset elements height
                 // reset maxHeight for new row
                 if( options.perRow ) {
