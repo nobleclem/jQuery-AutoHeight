@@ -43,7 +43,7 @@
             // then set all to maxHeight
             elements.each(function(){
                 // skip hidden elements
-                if( options.skipHidden && $(this).not(':visible') ) {
+                if( options.skipHidden && $(this).not(':visible').length ) {
                     return true;
                 }
 
