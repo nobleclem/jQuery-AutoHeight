@@ -1,6 +1,6 @@
 /**
  * Set height of a group of elements to the largest size
- * @Version: 1.1.1
+ * @Version: 1.2
  * @Author: Patrick Springstubbe
  * @Contact: @JediNobleclem
  * @Website: springstubbe.us
@@ -12,7 +12,8 @@
  *         minWidth  : 400,
  *         maxWidth  : 800,
  *         perRow    : false,
- *         skipHidden: true
+ *         skipHidden: true,
+ *         incMargins: false
  *     });
  * 
  **/
@@ -23,7 +24,8 @@
             minWidth  : false,
             maxWidth  : false,
             perRow    : false, // treat each invisible row independently
-            skipHidden: true   // don't use hidden elements in autoheight calculations
+            skipHidden: true,  // don't use hidden elements in autoheight calculations
+            incMargins: false  // include margins in height calculations
         }
         options = $.extend( defaults, options );
 
@@ -54,7 +56,7 @@
                     if( lastPosition && ($(this).offset().top != lastPosition) ) {
                         // set last full row elements height
                         if( maxHeight && (elements.filter('[data-row='+ row +']').length > 1) ) {
-                            elements.filter('[data-row='+ row +']').height( maxHeight );
+                            elements.filter('[data-row='+ row +']').css( 'height', maxHeight );
                         }
 
                         // reset maxHeight for next row of elements
@@ -82,7 +84,7 @@
                 }
 
                 // get element height and check if larger than maxHeight val
-                var elementHeight = borderBox ? $(this).outerHeight() : $(this).height();
+                var elementHeight = borderBox ? $(this).outerHeight( options.incMargins ) : $(this).height();
                 if( elementHeight > maxHeight ) {
                     maxHeight = elementHeight;
                 }
@@ -93,13 +95,13 @@
                 if( options.perRow ) {                                                    
                     // only if there are more than 1 in the final row
                     if( elements.filter('[data-row='+ row +']').length > 1 ) {
-                        elements.filter('[data-row='+ row +']').height( maxHeight );
+                        elements.filter('[data-row='+ row +']').css( 'height', maxHeight );
                     }
 
                     elements.css('clear','');
                 }
                 else {
-                    elements.height( maxHeight );
+                    elements.css( 'height', maxHeight );
                 }
             }
         }).trigger('resize');
